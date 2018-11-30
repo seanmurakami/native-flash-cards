@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import NewCard from './newcard'
 
 
 class HomeScreen extends React.Component {
@@ -20,25 +21,10 @@ class HomeScreen extends React.Component {
   }
 }
 
-class DetailsScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Create Card',
-    tabBarColor: 'green',
-    tabBarIcon: <Icon name="plus" size={25} color="#eee" />
-  }
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Create Card Screen</Text>
-      </View>
-    );
-  }
-}
-
 const RootStack = createMaterialBottomTabNavigator(
   {
     Home: HomeScreen,
-    Details: DetailsScreen,
+    Create: NewCard,
   },
   {
     initialRouteName: 'Home',
