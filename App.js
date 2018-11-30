@@ -1,67 +1,51 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
-import { createStackNavigator, createAppContainer } from 'react-navigation'
+import { Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation'
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+import Icon from 'react-native-vector-icons/FontAwesome'
+
 
 class HomeScreen extends React.Component {
-  constructor(props) {
-    super(props)
-    this.detailsPage = this.detailsPage.bind(this)
-  }
-  detailsPage() {
-    this.props.navigation.navigate('Details')
+  static navigationOptions = {
+    title: 'Home',
+    tabBarColor: '#f4511e',
+    tabBarIcon: <Icon name="home" size={25} color="#eee" />
   }
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-        <Button
-          title="Details Page"
-          onPress={this.detailsPage}
-        />
+        <Text>There are no cards to be viewed...</Text>
       </View>
     );
   }
 }
 
 class DetailsScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Create Card',
+    tabBarColor: 'green',
+    tabBarIcon: <Icon name="plus" size={25} color="#eee" />
+  }
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-        <Button
-          title="Home Screen"
-          onPress={() => this.props.navigation.navigate('Home')}
-        />
-        <Button
-          title="Add to Stack"
-          onPress={() => this.props.navigation.push('Details')}
-        />
-        <Button
-          title="Restart"
-          onPress={() => this.props.navigation.popToTop()}
-        />
+        <Text>Create Card Screen</Text>
       </View>
     );
   }
 }
 
-const RootStack = createStackNavigator(
+const RootStack = createMaterialBottomTabNavigator(
   {
     Home: HomeScreen,
     Details: DetailsScreen,
   },
   {
     initialRouteName: 'Home',
-    defaultNavigationOptions: {
-      headerStyle: {
+    barStyle: {
         backgroundColor: '#f4511e'
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold'
-      },
-      title: 'Native Flash Cards'
-    }
+    },
+    shifting: true
   }
 );
 
