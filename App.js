@@ -1,25 +1,8 @@
 import React from 'react';
-import { Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import NewCard from './newcard'
-
-
-class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home',
-    tabBarColor: '#f4511e',
-    tabBarIcon: <Icon name="home" size={25} color="#eee" />
-  }
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>There are no cards to be viewed...</Text>
-      </View>
-    );
-  }
-}
+import HomeScreen from './tabs/home'
+import NewCard from './tabs/newcard'
 
 const RootStack = createMaterialBottomTabNavigator(
   {
@@ -27,7 +10,7 @@ const RootStack = createMaterialBottomTabNavigator(
     Create: NewCard,
   },
   {
-    initialRouteName: 'Create',
+    initialRouteName: 'Home',
     shifting: true
   }
 );

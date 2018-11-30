@@ -14,9 +14,13 @@ export default class NewCard extends React.Component {
       question: '',
       answer: ''
     }
+    this.saveCard = this.saveCard.bind(this)
   }
   saveCard() {
-    alert('hello')
+    const { question, answer } = this.state
+    if (!question || !answer) return alert('YEET')
+    this.setState({question: '', answer: ''})
+    this.props.navigation.goBack()
   }
   render() {
     return (
@@ -27,7 +31,8 @@ export default class NewCard extends React.Component {
           <TextInput
             style={ styles.input }
             placeholder="Enter question here"
-            onChangeText={(question) => this.setState({question})}
+            value={ this.state.question }
+            onChangeText={question => this.setState({question})}
           />
           <Text style={ styles.labels }>Answer</Text>
           <TextInput
@@ -35,7 +40,8 @@ export default class NewCard extends React.Component {
             multiline={ true }
             numberofLines={5}
             placeholder="Enter answer here"
-            onChangeText={(answer) => this.setState({answer})}
+            value={ this.state.answer }
+            onChangeText={answer => this.setState({answer})}
           />
           <TouchableHighlight
             style={ styles.button }
