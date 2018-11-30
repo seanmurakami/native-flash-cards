@@ -1,26 +1,76 @@
 import React from 'react';
-import { StyleSheet, View, Text, SafeAreaView } from 'react-native';
+import { Text, View, Button } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation'
 
-export default class App extends React.Component {
+class HomeScreen extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.detailsPage = this.detailsPage.bind(this)
+  }
+  detailsPage() {
+    this.props.navigation.navigate('Details')
   }
   render() {
     return (
-      <SafeAreaView style={{flex: 1, backgroundColor: '#eee'}}>
-        <View style={styles.container}>
-          <Text style={{fontSize: 50}}>Hello, World</Text>
-        </View>
-      </SafeAreaView>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Home Screen</Text>
+        <Button
+          title="Details Page"
+          onPress={this.detailsPage}
+        />
+      </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    padding: 10
+class DetailsScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Details Screen</Text>
+        <Button
+          title="Home Screen"
+          onPress={() => this.props.navigation.navigate('Home')}
+        />
+        <Button
+          title="Add to Stack"
+          onPress={() => this.props.navigation.push('Details')}
+        />
+        <Button
+          title="Restart"
+          onPress={() => this.props.navigation.popToTop()}
+        />
+      </View>
+    );
+  }
+}
+
+const RootStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Details: DetailsScreen,
   },
-});
+  {
+    initialRouteName: 'Home',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#f4511e'
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold'
+      },
+      title: 'Native Flash Cards'
+    }
+  }
+);
+
+const AppContainer = createAppContainer(RootStack);
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <AppContainer />
+    );
+  }
+}
