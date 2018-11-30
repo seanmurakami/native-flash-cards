@@ -27,7 +27,7 @@ const RootStack = createMaterialBottomTabNavigator(
     Create: NewCard,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Create',
     shifting: true
   }
 );
