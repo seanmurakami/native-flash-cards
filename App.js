@@ -28,9 +28,6 @@ const RootStack = createMaterialBottomTabNavigator(
   },
   {
     initialRouteName: 'Home',
-    barStyle: {
-        backgroundColor: '#f4511e'
-    },
     shifting: true
   }
 );
