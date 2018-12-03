@@ -1,26 +1,42 @@
 import React from 'react';
-import { StyleSheet, View, Text, SafeAreaView } from 'react-native';
+import { createAppContainer } from 'react-navigation'
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+import HomeScreen from './tabs/home'
+import NewCard from './tabs/newcard'
+
+const RootStack = createMaterialBottomTabNavigator(
+  {
+    Home: HomeScreen,
+    Create: NewCard,
+  },
+  {
+    initialRouteName: 'Home',
+    shifting: true
+  }
+);
+
+const AppContainer = createAppContainer(RootStack);
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      flashcards: []
+    }
+    this.saveCard = this.saveCard.bind(this)
+  }
+  saveCard(flashcard) {
+    const flashcards = [...this.state.flashcards, flashcard]
+    this.setState({ flashcards })
   }
   render() {
     return (
-      <SafeAreaView style={{flex: 1, backgroundColor: '#eee'}}>
-        <View style={styles.container}>
-          <Text style={{fontSize: 50}}>Hello, World</Text>
-        </View>
-      </SafeAreaView>
+      <AppContainer
+        screenProps = {{
+          flashcards: this.state.flashcards,
+          saveCard: this.saveCard
+        }}
+      />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    padding: 10
-  },
-});
