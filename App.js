@@ -21,14 +21,20 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      flashcards: [{question: 'What is the meaning of life?', answer: 'I have no idea...'}]
+      flashcards: []
     }
+    this.saveCard = this.saveCard.bind(this)
+  }
+  saveCard(flashcard) {
+    const flashcards = [...this.state.flashcards, flashcard]
+    this.setState({ flashcards })
   }
   render() {
     return (
       <AppContainer
         screenProps = {{
-          flashcards: this.state.flashcards
+          flashcards: this.state.flashcards,
+          saveCard: this.saveCard
         }}
       />
     );

@@ -10,6 +10,13 @@ export default class HomeScreen extends React.Component {
   }
   render() {
     const { flashcards } = this.props.screenProps
+    if (!flashcards[0]) {
+      return (
+        <View style={ styles.main }>
+          <Text>You have no cards....</Text>
+        </View>
+      )
+    }
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <View style={ styles.main }>
@@ -35,14 +42,12 @@ const styles = StyleSheet.create({
   card: {
     width: '80%',
     height: 200,
-    alignItems: 'center',
     borderRadius: 9,
     backgroundColor: '#eee',
-    paddingVertical: 12,
-    borderColor: 'rgba(0,0,0,0.125)',
-    borderWidth: 1,
+    padding: 12,
+    paddingTop: 5,
     shadowOpacity: 0.2,
-    shadowOffset: {width: 2, height: 2}
+    shadowOffset: {width: 1, height: 1}
   },
   header: {
     fontWeight: 'bold',
@@ -50,7 +55,8 @@ const styles = StyleSheet.create({
   },
   values: {
     fontSize: 20,
-    marginVertical: 5
+    marginVertical: 5,
+    paddingVertical: 5
   },
   line: {
     borderBottomColor: 'rgba(0,0,0,0.125)',

@@ -20,8 +20,9 @@ export default class NewCard extends React.Component {
     const { question, answer } = this.state
     if (!question || !answer) return alert('YEET')
     const flashcard = Object.assign({}, this.state)
+    this.props.screenProps.saveCard(flashcard)
     this.setState({question: '', answer: ''})
-    this.props.navigation.navigate('Home', { flashcard })
+    this.props.navigation.navigate('Home')
   }
   render() {
     return (
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
     borderRadius: 9,
     shadowOpacity: 0.2,
-    shadowOffset: {width: 2, height: 2}
+    shadowOffset: {width: 1, height: 1}
   },
   header: {
     marginVertical: 20,
