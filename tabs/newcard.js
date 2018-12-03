@@ -19,8 +19,9 @@ export default class NewCard extends React.Component {
   saveCard() {
     const { question, answer } = this.state
     if (!question || !answer) return alert('YEET')
+    const flashcard = Object.assign({}, this.state)
     this.setState({question: '', answer: ''})
-    this.props.navigation.goBack()
+    this.props.navigation.navigate('Home', { flashcard })
   }
   render() {
     return (

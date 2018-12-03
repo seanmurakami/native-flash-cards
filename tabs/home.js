@@ -8,16 +8,12 @@ export default class HomeScreen extends React.Component {
     tabBarColor: '#f4511e',
     tabBarIcon: <Icon name="home" size={25} color="#eee" />
   }
-  constructor(props) {
-    super(props)
-    this.state = {
-      flashcards: []
-    }
-  }
   render() {
+    const { flashcards } = this.props.screenProps
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>There are no cards to be viewed...</Text>
+        <Text>{flashcards[0].question}</Text>
+        <Text>{flashcards[0].answer}</Text>
       </View>
     );
   }

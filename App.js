@@ -18,9 +18,19 @@ const RootStack = createMaterialBottomTabNavigator(
 const AppContainer = createAppContainer(RootStack);
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      flashcards: [{question: 'What is the meaning of life?', answer: 'I have no idea...'}]
+    }
+  }
   render() {
     return (
-      <AppContainer />
+      <AppContainer
+        screenProps = {{
+          flashcards: this.state.flashcards
+        }}
+      />
     );
   }
 }
