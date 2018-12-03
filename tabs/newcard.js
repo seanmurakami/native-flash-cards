@@ -63,14 +63,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#eee'
   },
   card: {
     width: '90%',
     height: 330,
-    backgroundColor: 'white',
     alignItems: 'center',
-    borderRadius: 9
+    backgroundColor: '#eee',
+    borderRadius: 9,
+    shadowOpacity: 0.2,
+    shadowOffset: {width: 2, height: 2}
   },
   header: {
     marginVertical: 20,
@@ -83,14 +84,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 10,
     backgroundColor: '#f4f4f4',
-    borderRadius: 5
+    borderRadius: 5,
+    borderColor: 'rgba(0, 0, 0, 0.125)',
+    borderWidth: 1
   },
   answer: {
     height: 80,
     paddingTop: 10
   },
   labels: {
-    fontSize: 20
+    fontSize: 20,
+    alignItems: 'flex-start'
   },
   button: {
     width: 100,
