@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 export default class NewCard extends React.Component {
   static navigationOptions = {
     title: 'Create Card',
-    tabBarColor: 'green',
+    tabBarColor: '#f4511e',
     tabBarIcon: <Icon name="ios-create" size={25} color="#eee" />
   }
   constructor(props) {
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
-    backgroundColor: 'green',
+    backgroundColor: '#f4511e',
     marginTop: 5,
     marginBottom: 12
   }
