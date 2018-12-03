@@ -18,7 +18,7 @@ export default class NewCard extends React.Component {
   }
   saveCard() {
     const { question, answer } = this.state
-    if (!question || !answer) return alert('YEET')
+    if (!question || !answer) return alert('Please fill in the question and answer input areas')
     const flashcard = Object.assign({}, this.state)
     this.props.screenProps.saveCard(flashcard)
     this.setState({question: '', answer: ''})
