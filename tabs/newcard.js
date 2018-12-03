@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
   },
   card: {
     width: '90%',
-    height: '50%',
     alignItems: 'center',
     backgroundColor: '#eee',
     borderRadius: 9,
@@ -98,12 +97,13 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start'
   },
   button: {
-    width: 100,
+    width: 150,
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
     backgroundColor: 'green',
-    marginVertical: 5
+    marginTop: 5,
+    marginBottom: 12
   }
 })
