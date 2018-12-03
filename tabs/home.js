@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default class HomeScreen extends React.Component {
@@ -10,7 +10,7 @@ export default class HomeScreen extends React.Component {
   }
   render() {
     const { flashcards } = this.props.screenProps
-    if (!flashcards[0]) {
+    if (flashcards.length === 0) {
       return (
         <View style={ styles.main }>
           <Text>You have no cards....</Text>
@@ -20,12 +20,20 @@ export default class HomeScreen extends React.Component {
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <View style={ styles.main }>
-          <View style={ styles.card }>
-            <View style={ styles.line }>
-              <Text style={ styles.values }>{flashcards[0].question}</Text>
+          <FlatList
+            data={ flashcards }
+            showsVerticalScrollIndicator={false}
+            keyExtractor={ item => item.question }
+            renderItem={({item}) =>
+            <View style={ styles.container }>
+              <View style={ styles.card }>
+                <View style={ styles.line }>
+                  <Text style={ styles.values }>{item.question}</Text>
+                </View>
+                <Text style={ styles.values }>{item.answer}</Text>
+              </View>
             </View>
-            <Text style={ styles.values }>{flashcards[0].answer}</Text>
-          </View>
+            }/>
         </View>
       </SafeAreaView>
     );
@@ -36,18 +44,24 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 10
+    marginTop: 18,
+    justifyContent: 'center'
+  },
+  container: {
+    width: 350,
+    alignItems: 'center',
+    paddingTop: 12,
+    paddingHorizontal: 4
   },
   card: {
-    width: '80%',
-    height: 200,
+    width: '100%',
     borderRadius: 9,
     backgroundColor: '#eee',
-    padding: 12,
+    padding: 14,
     paddingTop: 5,
     shadowOpacity: 0.2,
-    shadowOffset: {width: 1, height: 1}
+    shadowOffset: {width: 1, height: 1},
+    marginBottom: 12
   },
   header: {
     fontWeight: 'bold',
