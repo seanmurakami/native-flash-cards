@@ -6,7 +6,8 @@ export default class NewCard extends React.Component {
     super(props)
     this.state = {
       question: '',
-      answer: ''
+      answer: '',
+      id: this.props.screenProps.id
     }
     this.saveCard = this.saveCard.bind(this)
   }
