@@ -2,6 +2,15 @@ import React from 'react'
 import { StyleSheet, Text, View, FlatList, Button } from 'react-native'
 
 export default class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+    this.editCard = this.editCard.bind(this)
+  }
+  editCard(id) {
+    this.props.screenProps.editCard(id)
+    this.props.navigation.navigate('Edit')
+  }
   render() {
     const { flashcards } = this.props.screenProps
     if (flashcards.length === 0) {
@@ -25,7 +34,7 @@ export default class HomeScreen extends React.Component {
                   <Text style={ styles.values }>{item.answer}</Text>
                 </View>
                 <View style={{position: 'absolute', right: 0, bottom: 0}}>
-                  <Button title="Edit" onPress={() => this.props.navigation.navigate('Edit')}/>
+                  <Button title="Edit" id={ item.id } onPress={() => this.editCard(item.id)}/>
                 </View>
               </View>
             </View>

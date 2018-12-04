@@ -76,9 +76,11 @@ export default class App extends React.Component {
     super(props)
     this.state = {
       flashcards,
-      id: 4
+      id: 4,
+      selectedCard: null
     }
     this.saveCard = this.saveCard.bind(this)
+    this.editCard = this.editCard.bind(this)
   }
   saveCard(flashcard) {
     const updatedFlashCard = Object.assign(flashcard, {id: this.state.id})
@@ -86,6 +88,10 @@ export default class App extends React.Component {
     const newState = Object.assign({}, {flashcards}, {id: this.state.id++})
     AsyncStorage.setItem('flashcards', JSON.stringify(newState))
     this.setState({flashcards})
+  }
+  editCard(id) {
+    const selectedCard = this.state.flashcards.filter(flashcard => flashcard.id === id)
+    this.setState({selectedCard: selectedCard[0]})
   }
   componentDidMount() {
     AsyncStorage.getItem('flashcards')
@@ -101,8 +107,9 @@ export default class App extends React.Component {
       <AppContainer
         screenProps = {{
           flashcards: this.state.flashcards,
-          id: this.state.id,
-          saveCard: this.saveCard
+          saveCard: this.saveCard,
+          editCard: this.editCard,
+          selectedCard: this.state.selectedCard
         }}
       />
     );

@@ -7,17 +7,18 @@ export default class EditCard extends React.Component {
     this.state = {
       question: '',
       answer: '',
-      id: this.props.screenProps.id
+      id: this.props.screenProps.selectedCard.id
     }
   }
   render() {
+    const { question, answer } = this.props.screenProps.selectedCard
     return (
       <KeyboardAvoidingView style={ styles.main } behavior="padding" enabled>
         <View style={ styles.card }>
           <Text style={ styles.labels }>Question</Text>
           <TextInput
             style={ styles.input }
-            value={ this.state.question }
+            value={ question }
             onChangeText={question => this.setState({question})}
           />
           <Text style={ styles.labels }>Answer</Text>
@@ -25,7 +26,7 @@ export default class EditCard extends React.Component {
             style={ [styles.input, styles.answer] }
             multiline={ true }
             numberofLines={5}
-            value={ this.state.answer }
+            value={ answer }
             onChangeText={answer => this.setState({answer})}
           />
           <TouchableHighlight
