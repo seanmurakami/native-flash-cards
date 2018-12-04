@@ -25,7 +25,7 @@ export default class HomeScreen extends React.Component {
                   <Text style={ styles.values }>{item.answer}</Text>
                 </View>
                 <View style={{position: 'absolute', right: 0, bottom: 0}}>
-                  <Button title="Edit" onPress={() => alert('hello')}/>
+                  <Button title="Edit" onPress={() => this.props.navigation.navigate('Edit')}/>
                 </View>
               </View>
             </View>

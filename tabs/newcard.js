@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    marginTop: 25
   },
   card: {
     width: '90%',
@@ -88,8 +88,7 @@ const styles = StyleSheet.create({
     paddingTop: 10
   },
   labels: {
-    fontSize: 20,
-    alignItems: 'flex-start'
+    fontSize: 20
   },
   button: {
     width: 150,
