@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Home',
+    title: 'Native Flash Cards',
     tabBarColor: '#f4511e',
     tabBarIcon: <Icon name="home" size={25} color="#eee" />
   }
@@ -18,7 +18,6 @@ export default class HomeScreen extends React.Component {
       )
     }
     return (
-      <SafeAreaView style={{ flex: 1 }}>
         <View style={ styles.main }>
           <FlatList
             data={ flashcards }
@@ -35,7 +34,6 @@ export default class HomeScreen extends React.Component {
             </View>
             }/>
         </View>
-      </SafeAreaView>
     );
   }
 }
@@ -44,7 +42,6 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 18,
     justifyContent: 'center'
   },
   container: {

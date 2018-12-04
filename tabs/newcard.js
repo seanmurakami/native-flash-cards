@@ -1,10 +1,10 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, TouchableHighlight, View } from 'react-native'
+import { StyleSheet, Text, TextInput, TouchableHighlight, View, KeyboardAvoidingView } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 export default class NewCard extends React.Component {
   static navigationOptions = {
-    title: 'Create Card',
+    title: 'Native Flash Cards',
     tabBarColor: '#f4511e',
     tabBarIcon: <Icon name="ios-create" size={25} color="#eee" />
   }
@@ -26,7 +26,7 @@ export default class NewCard extends React.Component {
   }
   render() {
     return (
-      <View style={ styles.main }>
+      <KeyboardAvoidingView style={ styles.main } behavior="padding" enabled>
         <View style={ styles.card }>
           <Text style={ styles.header }>Create a New Card</Text>
           <Text style={ styles.labels }>Question</Text>
@@ -54,7 +54,7 @@ export default class NewCard extends React.Component {
             </View>
           </TouchableHighlight>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   card: {
     width: '90%',

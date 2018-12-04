@@ -1,14 +1,28 @@
 import React from 'react';
 import { AsyncStorage } from 'react-native'
-import { createAppContainer } from 'react-navigation'
+import { createAppContainer, createStackNavigator } from 'react-navigation'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 import HomeScreen from './tabs/home'
 import NewCard from './tabs/newcard'
+import EditCard from './editcard'
+
+const HomeStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Edit: EditCard
+  }
+)
+
+const CreateStack = createStackNavigator(
+  {
+    Create: NewCard
+  }
+)
 
 const RootStack = createMaterialBottomTabNavigator(
   {
-    Home: HomeScreen,
-    Create: NewCard,
+    Home : HomeStack,
+    Create: CreateStack,
   },
   {
     initialRouteName: 'Home',
