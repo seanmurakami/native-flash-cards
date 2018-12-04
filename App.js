@@ -2,6 +2,8 @@ import React from 'react';
 import { AsyncStorage } from 'react-native'
 import { createAppContainer, createStackNavigator } from 'react-navigation'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import HomeScreen from './tabs/home'
 import NewCard from './tabs/newcard'
 import EditCard from './editcard'
@@ -10,12 +12,28 @@ const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
     Edit: EditCard
+  },
+  {
+    defaultNavigationOptions: {
+      title: 'Native Flash Cards'
+    },
+    navigationOptions: {
+      tabBarIcon: <Icon name="home" size={25} color="#eee" />
+    }
   }
 )
 
 const CreateStack = createStackNavigator(
   {
     Create: NewCard
+  },
+  {
+    defaultNavigationOptions: {
+      title: 'Native Flash Cards'
+    },
+    navigationOptions: {
+      tabBarIcon: <Ionicons name="ios-create" size={25} color="#eee" />
+    }
   }
 )
 
@@ -26,7 +44,10 @@ const RootStack = createMaterialBottomTabNavigator(
   },
   {
     initialRouteName: 'Home',
-    shifting: true
+    shifting: true,
+    barStyle: {
+      backgroundColor: '#00C164'
+    }
   }
 );
 

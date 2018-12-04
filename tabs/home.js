@@ -1,13 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Native Flash Cards',
-    tabBarColor: '#f4511e',
-    tabBarIcon: <Icon name="home" size={25} color="#eee" />
-  }
   render() {
     const { flashcards } = this.props.screenProps
     if (flashcards.length === 0) {

@@ -1,13 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, TouchableHighlight, View, KeyboardAvoidingView } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'
 
 export default class NewCard extends React.Component {
-  static navigationOptions = {
-    title: 'Native Flash Cards',
-    tabBarColor: '#f4511e',
-    tabBarIcon: <Icon name="ios-create" size={25} color="#eee" />
-  }
   constructor(props) {
     super(props)
     this.state = {
@@ -102,7 +96,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
-    backgroundColor: '#f4511e',
+    backgroundColor: '#00C164',
     marginTop: 5,
     marginBottom: 12
   }
