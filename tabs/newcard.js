@@ -44,7 +44,7 @@ export default class NewCard extends React.Component {
             onPress={ this.saveCard }
             underlayColor='grey'>
             <View>
-              <Text style={{ color: 'white' }}>Save</Text>
+              <Text style={ styles.buttonText }>Save</Text>
             </View>
           </TouchableHighlight>
         </View>
@@ -99,5 +99,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#00C164',
     marginTop: 5,
     marginBottom: 12
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18
   }
 })

@@ -32,7 +32,7 @@ const CreateStack = createStackNavigator(
       title: 'Native Flash Cards'
     },
     navigationOptions: {
-      tabBarIcon: <Ionicons name="ios-create" size={25} color="#eee" />
+      tabBarIcon: <Ionicons name="ios-add-circle-outline" size={25} color="#eee" />
     }
   }
 )
