@@ -17,7 +17,6 @@ export default class EditCard extends React.Component {
           <Text style={ styles.labels }>Question</Text>
           <TextInput
             style={ styles.input }
-            placeholder="Enter question here"
             value={ this.state.question }
             onChangeText={question => this.setState({question})}
           />
@@ -26,13 +25,11 @@ export default class EditCard extends React.Component {
             style={ [styles.input, styles.answer] }
             multiline={ true }
             numberofLines={5}
-            placeholder="Enter answer here"
             value={ this.state.answer }
             onChangeText={answer => this.setState({answer})}
           />
           <TouchableHighlight
             style={ styles.button }
-            onPress={ this.saveCard }
             underlayColor='grey'>
             <View>
               <Text style={ styles.buttonText }>Save</Text>

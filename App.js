@@ -81,15 +81,18 @@ export default class App extends React.Component {
     this.saveCard = this.saveCard.bind(this)
   }
   saveCard(flashcard) {
-    const flashcards = [...this.state.flashcards, flashcard]
-    AsyncStorage.setItem('flashcards', JSON.stringify(flashcards))
-    this.setState({flashcards, id: this.state.id++})
+    const updatedFlashCard = Object.assign(flashcard, {id: this.state.id})
+    const flashcards = [...this.state.flashcards, updatedFlashCard]
+    const newState = Object.assign({}, {flashcards}, {id: this.state.id++})
+    AsyncStorage.setItem('flashcards', JSON.stringify(newState))
+    this.setState({flashcards})
   }
   componentDidMount() {
     AsyncStorage.getItem('flashcards')
       .then(item => {
         if(item) {
-          this.setState({flashcards: JSON.parse(item)})
+          const parsedItem = JSON.parse(item)
+          this.setState({flashcards: parsedItem.flashcards, id: parsedItem.id})
         }
       })
   }
