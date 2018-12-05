@@ -1,14 +1,22 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, ScrollView, Text, View } from 'react-native'
 
 export default class PracticeCard extends React.Component {
   render() {
     return (
       <View style={ styles.main }>
         <View style={ styles.container }>
-          <View style={ styles.card }>
-            <Text style={ styles.values }>Hello there</Text>
-          </View>
+          <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false}>
+            {
+              this.props.screenProps.flashcards.map((item, i) => {
+              return (
+              <View key={i} style={ styles.card }>
+                <Text style={ styles.values }>{item.question}</Text>
+              </View>
+              )
+            })
+            }
+          </ScrollView>
         </View>
       </View>
     )
@@ -22,12 +30,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   container: {
-    width: '90%',
+    width: '100%'
   },
   card: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 150,
+    margin: 10,
+    paddingHorizontal: 10,
+    height: 200,
+    width: 355,
     borderRadius: 9,
     backgroundColor: '#eee',
     shadowOffset: {width: 1, height: 1},
