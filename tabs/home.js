@@ -1,12 +1,15 @@
 import React from 'react'
-import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import { StyleSheet, Text, View, FlatList, Button } from 'react-native'
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Home',
-    tabBarColor: '#f4511e',
-    tabBarIcon: <Icon name="home" size={25} color="#eee" />
+  constructor(props) {
+    super(props)
+    this.state = {}
+    this.editCard = this.editCard.bind(this)
+  }
+  editCard(id) {
+    this.props.screenProps.editCard(id)
+    this.props.navigation.navigate('Edit')
   }
   render() {
     const { flashcards } = this.props.screenProps
@@ -18,7 +21,6 @@ export default class HomeScreen extends React.Component {
       )
     }
     return (
-      <SafeAreaView style={{ flex: 1 }}>
         <View style={ styles.main }>
           <FlatList
             data={ flashcards }
@@ -27,15 +29,17 @@ export default class HomeScreen extends React.Component {
             renderItem={({item}) =>
             <View style={ styles.container }>
               <View style={ styles.card }>
+                <Text style={ styles.values }>{item.question}</Text>
                 <View style={ styles.line }>
-                  <Text style={ styles.values }>{item.question}</Text>
+                  <Text style={ styles.values }>{item.answer}</Text>
                 </View>
-                <Text style={ styles.values }>{item.answer}</Text>
+                <View style={{position: 'absolute', right: 0, bottom: 0}}>
+                  <Button title="Edit" id={ item.id } onPress={() => this.editCard(item.id)}/>
+                </View>
               </View>
             </View>
             }/>
         </View>
-      </SafeAreaView>
     );
   }
 }
@@ -44,13 +48,12 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 18,
     justifyContent: 'center'
   },
   container: {
     width: 350,
     alignItems: 'center',
-    paddingTop: 12,
+    paddingVertical: 12,
     paddingHorizontal: 4
   },
   card: {
@@ -59,21 +62,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
     padding: 14,
     paddingTop: 5,
+    paddingBottom: 3,
     shadowOpacity: 0.2,
-    shadowOffset: {width: 1, height: 1},
-    marginBottom: 12
-  },
-  header: {
-    fontWeight: 'bold',
-    fontSize: 22
+    shadowOffset: {width: 1, height: 1}
   },
   values: {
     fontSize: 20,
     marginVertical: 5,
-    paddingVertical: 5
+    paddingVertical: 7
   },
   line: {
-    borderBottomColor: 'rgba(0,0,0,0.125)',
-    borderBottomWidth: 1
+    borderTopColor: 'rgba(0,0,0,0.125)',
+    borderTopWidth: 1,
+    marginBottom: 18
   }
 })

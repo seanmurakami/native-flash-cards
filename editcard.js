@@ -1,33 +1,29 @@
 import React from 'react'
 import { StyleSheet, Text, TextInput, TouchableHighlight, View, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native'
 
-export default class NewCard extends React.Component {
+export default class EditCard extends React.Component {
   constructor(props) {
     super(props)
+    const { question, answer, id } = this.props.screenProps.selectedCard
     this.state = {
-      question: '',
-      answer: ''
+      question,
+      answer,
+      id
     }
-    this.saveCard = this.saveCard.bind(this)
+    this.updateCard = this.updateCard.bind(this)
   }
-  saveCard() {
-    const { question, answer } = this.state
-    if (!question || !answer) return alert('Please fill in the question and answer input areas')
-    const flashcard = Object.assign({}, this.state)
-    this.props.screenProps.saveCard(flashcard)
-    this.setState({question: '', answer: ''})
+  updateCard() {
+    this.props.screenProps.updateCard(this.state)
     this.props.navigation.navigate('Home')
   }
   render() {
     return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} enabled={false}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <KeyboardAvoidingView style={ styles.main } behavior="padding" enabled>
           <View style={ styles.card }>
-            <Text style={ styles.header }>Create a New Card</Text>
             <Text style={ styles.labels }>Question</Text>
             <TextInput
               style={ styles.input }
-              placeholder="Enter question here"
               value={ this.state.question }
               onChangeText={question => this.setState({question})}
             />
@@ -36,13 +32,12 @@ export default class NewCard extends React.Component {
               style={ [styles.input, styles.answer] }
               multiline={ true }
               numberofLines={5}
-              placeholder="Enter answer here"
               value={ this.state.answer }
               onChangeText={answer => this.setState({answer})}
             />
             <TouchableHighlight
               style={ styles.button }
-              onPress={ this.saveCard }
+              onPress={ this.updateCard }
               underlayColor='grey'>
               <View>
                 <Text style={ styles.buttonText }>Save</Text>
@@ -63,16 +58,12 @@ const styles = StyleSheet.create({
   },
   card: {
     width: '90%',
+    paddingTop: 15,
     alignItems: 'center',
     backgroundColor: '#eee',
     borderRadius: 9,
     shadowOpacity: 0.2,
     shadowOffset: {width: 1, height: 1}
-  },
-  header: {
-    marginVertical: 20,
-    fontSize: 30,
-    fontWeight: 'bold'
   },
   input: {
     height: 40,
