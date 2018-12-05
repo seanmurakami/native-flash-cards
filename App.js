@@ -82,6 +82,7 @@ export default class App extends React.Component {
     this.saveCard = this.saveCard.bind(this)
     this.editCard = this.editCard.bind(this)
     this.updateCard = this.updateCard.bind(this)
+    this.deleteCard = this.deleteCard.bind(this)
   }
   saveCard(flashcard) {
     const updatedFlashCard = Object.assign(flashcard, {id: this.state.id})
@@ -103,6 +104,14 @@ export default class App extends React.Component {
     AsyncStorage.setItem('flashcards', JSON.stringify(newState))
     this.setState({flashcards})
   }
+  deleteCard(cardID) {
+    const flashcards = [...this.state.flashcards]
+    const { id } = this.state
+    const updatedCards = flashcards.filter(item => item.id !== cardID)
+    const newState = Object.assign({}, {flashcards: updatedCards, id})
+    AsyncStorage.setItem('flashcards', JSON.stringify(newState))
+    this.setState({flashcards: updatedCards})
+  }
   componentDidMount() {
     AsyncStorage.getItem('flashcards')
       .then(item => {
@@ -120,7 +129,8 @@ export default class App extends React.Component {
           saveCard: this.saveCard,
           editCard: this.editCard,
           selectedCard: this.state.selectedCard,
-          updateCard: this.updateCard
+          updateCard: this.updateCard,
+          deleteCard: this.deleteCard
         }}
       />
     );

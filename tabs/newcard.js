@@ -35,7 +35,7 @@ export default class NewCard extends React.Component {
             <TextInput
               style={ [styles.input, styles.answer] }
               multiline={ true }
-              numberofLines={5}
+              numberofLines={6}
               placeholder="Enter answer here"
               value={ this.state.answer }
               onChangeText={answer => this.setState({answer})}
@@ -72,7 +72,6 @@ const styles = StyleSheet.create({
   header: {
     marginVertical: 20,
     fontSize: 30,
-    fontWeight: 'bold'
   },
   input: {
     height: 40,
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   answer: {
-    height: 80,
+    height: 100,
     paddingTop: 10
   },
   labels: {

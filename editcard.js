@@ -21,6 +21,7 @@ export default class EditCard extends React.Component {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <KeyboardAvoidingView style={ styles.main } behavior="padding" enabled>
           <View style={ styles.card }>
+            <Text style={ styles.header }>Edit Card</Text>
             <Text style={ styles.labels }>Question</Text>
             <TextInput
               style={ styles.input }
@@ -65,9 +66,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowOffset: {width: 1, height: 1}
   },
+  header: {
+    fontSize: 30,
+    marginBottom: 15
+  },
   input: {
     height: 40,
-    width: '80%',
+    width: '90%',
     paddingHorizontal: 10,
     marginVertical: 10,
     backgroundColor: '#f4f4f4',
@@ -76,7 +81,7 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   answer: {
-    height: 80,
+    height: 100,
     paddingTop: 10
   },
   labels: {
