@@ -1,15 +1,20 @@
 import React from 'react'
 import { StyleSheet, Text, View, FlatList, Button } from 'react-native'
+import Swipeout from 'react-native-swipeout'
 
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {}
     this.editCard = this.editCard.bind(this)
+    this.deleteCard = this.deleteCard.bind(this)
   }
   editCard(id) {
     this.props.screenProps.editCard(id)
     this.props.navigation.navigate('Edit')
+  }
+  deleteCard(id) {
+    alert(id)
   }
   render() {
     const { flashcards } = this.props.screenProps
@@ -27,17 +32,29 @@ export default class HomeScreen extends React.Component {
             showsVerticalScrollIndicator={false}
             keyExtractor={ item => item.question }
             renderItem={({item}) =>
-            <View style={ styles.container }>
-              <View style={ styles.card }>
-                <Text style={ styles.values }>{item.question}</Text>
-                <View style={ styles.line }>
-                  <Text style={ styles.values }>{item.answer}</Text>
-                </View>
-                <View style={{position: 'absolute', right: 0, bottom: 0}}>
-                  <Button title="Edit" id={ item.id } onPress={() => this.editCard(item.id)}/>
-                </View>
+              <View style={ styles.container }>
+                <Swipeout
+                  right={[
+                    {
+                      text: 'Delete',
+                      type: 'delete',
+                      onPress: () => this.deleteCard(item.id)
+                    }
+                  ]}
+                  autoClose
+                  sensitivity={45}
+                  style={ styles.swipeButton }>
+                  <View style={ styles.card }>
+                    <Text style={ styles.values }>{item.question}</Text>
+                    <View style={ styles.line }>
+                      <Text style={ styles.values }>{item.answer}</Text>
+                    </View>
+                    <View style={{position: 'absolute', right: 0, bottom: 0}}>
+                      <Button title="Edit" id={ item.id } onPress={() => this.editCard(item.id)}/>
+                    </View>
+                  </View>
+                </Swipeout>
               </View>
-            </View>
             }/>
         </View>
     );
@@ -75,5 +92,8 @@ const styles = StyleSheet.create({
     borderTopColor: 'rgba(0,0,0,0.125)',
     borderTopWidth: 1,
     marginBottom: 18
+  },
+  swipeButton: {
+    borderRadius: 9
   }
 })
