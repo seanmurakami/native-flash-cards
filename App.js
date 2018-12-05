@@ -4,9 +4,11 @@ import { createAppContainer, createStackNavigator } from 'react-navigation'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import Entypo from 'react-native-vector-icons/Entypo'
 import HomeScreen from './tabs/home'
 import NewCard from './tabs/newcard'
 import EditCard from './editcard'
+import PracticeCard from './tabs/practice'
 
 const HomeStack = createStackNavigator(
   {
@@ -37,10 +39,25 @@ const CreateStack = createStackNavigator(
   }
 )
 
+const PracticeStack = createStackNavigator(
+  {
+    Practice: PracticeCard
+  },
+  {
+    defaultNavigationOptions: {
+      title: 'Native Flash Cards'
+  },
+    navigationOptions: {
+      tabBarIcon: <Entypo name="book" size={25} color="#eee" />
+    }
+  }
+)
+
 const RootStack = createMaterialBottomTabNavigator(
   {
     Home : HomeStack,
     Create: CreateStack,
+    Practice: PracticeStack
   },
   {
     initialRouteName: 'Home',
