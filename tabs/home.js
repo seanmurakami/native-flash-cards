@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
   },
   swipeButton: {
     borderRadius: 9,
-    marginTop: 12,
-    marginBottom: 6
+    marginVertical: 8
   }
 })
