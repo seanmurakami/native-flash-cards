@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, TouchableHighlight, View, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Text, TextInput, TouchableHighlight, View, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native'
 
 export default class NewCard extends React.Component {
   constructor(props) {
@@ -20,35 +20,37 @@ export default class NewCard extends React.Component {
   }
   render() {
     return (
-      <KeyboardAvoidingView style={ styles.main } behavior="padding" enabled>
-        <View style={ styles.card }>
-          <Text style={ styles.header }>Create a New Card</Text>
-          <Text style={ styles.labels }>Question</Text>
-          <TextInput
-            style={ styles.input }
-            placeholder="Enter question here"
-            value={ this.state.question }
-            onChangeText={question => this.setState({question})}
-          />
-          <Text style={ styles.labels }>Answer</Text>
-          <TextInput
-            style={ [styles.input, styles.answer] }
-            multiline={ true }
-            numberofLines={5}
-            placeholder="Enter answer here"
-            value={ this.state.answer }
-            onChangeText={answer => this.setState({answer})}
-          />
-          <TouchableHighlight
-            style={ styles.button }
-            onPress={ this.saveCard }
-            underlayColor='grey'>
-            <View>
-              <Text style={ styles.buttonText }>Save</Text>
-            </View>
-          </TouchableHighlight>
-        </View>
-      </KeyboardAvoidingView>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} enabled={false}>
+        <KeyboardAvoidingView style={ styles.main } behavior="padding" enabled>
+          <View style={ styles.card }>
+            <Text style={ styles.header }>Create a New Card</Text>
+            <Text style={ styles.labels }>Question</Text>
+            <TextInput
+              style={ styles.input }
+              placeholder="Enter question here"
+              value={ this.state.question }
+              onChangeText={question => this.setState({question})}
+            />
+            <Text style={ styles.labels }>Answer</Text>
+            <TextInput
+              style={ [styles.input, styles.answer] }
+              multiline={ true }
+              numberofLines={5}
+              placeholder="Enter answer here"
+              value={ this.state.answer }
+              onChangeText={answer => this.setState({answer})}
+            />
+            <TouchableHighlight
+              style={ styles.button }
+              onPress={ this.saveCard }
+              underlayColor='grey'>
+              <View>
+                <Text style={ styles.buttonText }>Save</Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
     )
   }
 }

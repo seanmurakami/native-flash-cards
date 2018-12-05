@@ -81,6 +81,7 @@ export default class App extends React.Component {
     }
     this.saveCard = this.saveCard.bind(this)
     this.editCard = this.editCard.bind(this)
+    this.updateCard = this.updateCard.bind(this)
   }
   saveCard(flashcard) {
     const updatedFlashCard = Object.assign(flashcard, {id: this.state.id})
@@ -92,6 +93,15 @@ export default class App extends React.Component {
   editCard(id) {
     const selectedCard = this.state.flashcards.filter(flashcard => flashcard.id === id)
     this.setState({selectedCard: selectedCard[0]})
+  }
+  updateCard(flashcard) {
+    const flashcards = [...this.state.flashcards]
+    const { id } = this.state
+    const index = flashcards.findIndex(item => item.id === flashcard.id)
+    flashcards.splice(index, 1, flashcard)
+    const newState = Object.assign({}, {flashcards, id})
+    AsyncStorage.setItem('flashcards', JSON.stringify(newState))
+    this.setState({flashcards})
   }
   componentDidMount() {
     AsyncStorage.getItem('flashcards')
@@ -109,7 +119,8 @@ export default class App extends React.Component {
           flashcards: this.state.flashcards,
           saveCard: this.saveCard,
           editCard: this.editCard,
-          selectedCard: this.state.selectedCard
+          selectedCard: this.state.selectedCard,
+          updateCard: this.updateCard
         }}
       />
     );

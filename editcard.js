@@ -1,43 +1,51 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, TouchableHighlight, View, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Text, TextInput, TouchableHighlight, View, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native'
 
 export default class EditCard extends React.Component {
   constructor(props) {
     super(props)
+    const { question, answer, id } = this.props.screenProps.selectedCard
     this.state = {
-      question: '',
-      answer: '',
-      id: this.props.screenProps.selectedCard.id
+      question,
+      answer,
+      id
     }
+    this.updateCard = this.updateCard.bind(this)
+  }
+  updateCard() {
+    this.props.screenProps.updateCard(this.state)
+    this.props.navigation.navigate('Home')
   }
   render() {
-    const { question, answer } = this.props.screenProps.selectedCard
     return (
-      <KeyboardAvoidingView style={ styles.main } behavior="padding" enabled>
-        <View style={ styles.card }>
-          <Text style={ styles.labels }>Question</Text>
-          <TextInput
-            style={ styles.input }
-            value={ question }
-            onChangeText={question => this.setState({question})}
-          />
-          <Text style={ styles.labels }>Answer</Text>
-          <TextInput
-            style={ [styles.input, styles.answer] }
-            multiline={ true }
-            numberofLines={5}
-            value={ answer }
-            onChangeText={answer => this.setState({answer})}
-          />
-          <TouchableHighlight
-            style={ styles.button }
-            underlayColor='grey'>
-            <View>
-              <Text style={ styles.buttonText }>Save</Text>
-            </View>
-          </TouchableHighlight>
-        </View>
-      </KeyboardAvoidingView>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <KeyboardAvoidingView style={ styles.main } behavior="padding" enabled>
+          <View style={ styles.card }>
+            <Text style={ styles.labels }>Question</Text>
+            <TextInput
+              style={ styles.input }
+              value={ this.state.question }
+              onChangeText={question => this.setState({question})}
+            />
+            <Text style={ styles.labels }>Answer</Text>
+            <TextInput
+              style={ [styles.input, styles.answer] }
+              multiline={ true }
+              numberofLines={5}
+              value={ this.state.answer }
+              onChangeText={answer => this.setState({answer})}
+            />
+            <TouchableHighlight
+              style={ styles.button }
+              onPress={ this.updateCard }
+              underlayColor='grey'>
+              <View>
+                <Text style={ styles.buttonText }>Save</Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
     )
   }
 }
