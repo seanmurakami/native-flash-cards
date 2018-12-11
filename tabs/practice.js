@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 10,
     height: 200,
-    margin: 9,
+    margin: 12,
     borderRadius: 9,
     backgroundColor: '#eee',
     shadowOffset: {width: 1, height: 1},
