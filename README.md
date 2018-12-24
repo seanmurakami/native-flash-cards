@@ -17,5 +17,9 @@ A mobile flash card app for people who learn by self-quizzing.
 git clone https://github.com/seanmurakami/native-flash-cards.git
 cd native-flash-cards/
 npm install
-npm start
+```
+
+### Run the Application
+```
+expo start
 ```
